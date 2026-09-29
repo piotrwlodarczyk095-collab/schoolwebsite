@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ember &amp; Oak — Restaurant</title>
+  <meta name="description" content="Ember & Oak — traditional recipes, modern fire. Book a table tonight.">
+  <meta name="theme-color" content="#0e0d0c">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Forum&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="is-loading">
+
+  <!-- PRELOADER -->
+  <div class="preloader" data-preloader>
+    <div class="preloader__ring"></div>
+    <p class="preloader__text" aria-hidden="true">
+      <span>E</span><span>M</span><span>B</span><span>E</span><span>R</span>
+    </p>
+  </div>
+
+  <!-- SCROLL PROGRESS + CURSOR -->
+  <div class="scroll-progress" data-scroll-progress></div>
+  <div class="cursor" data-cursor aria-hidden="true"></div>
+  <div class="cursor-dot" data-cursor-dot aria-hidden="true"></div>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <address class="topbar__item">
+        <svg viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        12 Harbour Lane, Old Town
+      </address>
+      <span class="topbar__sep"></span>
+      <p class="topbar__item">
+        <span class="status-dot" data-status-dot></span>
+        <span data-open-status>Daily: 11:30 am – 11:00 pm</span>
+      </p>
+      <div class="topbar__right">
+        <a href="tel:+441234567890" class="topbar__item link">
+          <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg>
+          +44 1234 567 890
+        </a>
+        <span class="topbar__sep"></span>
+        <a href="mailto:hello@emberandoak.test" class="topbar__item link">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+          hello@emberandoak.test
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header" data-header>
+    <div class="container header__inner">
+      <a href="#home" class="logo" aria-label="Ember & Oak home">
+        <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true">
+          <path d="M20 4c3 6 10 9 10 18a10 10 0 0 1-20 0c0-5 3-7 4-11 1 3 3 4 4 4-1-5 0-8 2-11Z"/>
+        </svg>
+        <span class="logo__text">EMBER<small>&amp; OAK</small></span>
+      </a>
+
+      <nav class="navbar" data-navbar aria-label="Primary">
+        <ul class="navbar__list">
+          <li><a href="#home" class="navbar__link active" data-nav-link>Home</a></li>
+          <li><a href="#menu" class="navbar__link" data-nav-link>Menus</a></li>
+          <li><a href="#about" class="navbar__link" data-nav-link>About Us</a></li>
+          <li><a href="#chefs" class="navbar__link" data-nav-link>Our Chefs</a></li>
+          <li><a href="#gallery" class="navbar__link" data-nav-link>Gallery</a></li>
+          <li><a href="#reservation" class="navbar__link" data-nav-link>Contact</a></li>
+        </ul>
+        <div class="navbar__footer">
+          <p>Visit us</p>
+          <p>12 Harbour Lane, Old Town</p>
+          <p>Daily 11:30 am – 11:00 pm</p>
+          <a href="tel:+441234567890" class="link">+44 1234 567 890</a>
+        </div>
+      </nav>
+
+      <div class="header__actions">
+        <button class="cart-btn" data-cart-open aria-label="Open your order">
+          <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-btn__count" data-cart-count>0</span>
+        </button>
+        <a href="#reservation" class="btn btn--gold header__cta">
+          <span class="btn__text" data-text="Find a table">Find a table</span>
+        </a>
+        <button class="nav-toggle" data-nav-toggle aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="overlay" data-overlay></div>
+
+  <main>
+    <!-- HERO SLIDER -->
+    <section class="hero" id="home" data-hero aria-label="Featured">
+      <div class="hero__slide active" data-hero-slide>
+        <img class="hero__bg" src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1920&q=80" alt="">
+        <div class="hero__content">
+          <p class="label-2 hero__subtitle">Traditional &amp; Hygiene</p>
+          <div class="separator"></div>
+          <h1 class="display-1 hero__title">For the love of<br>delicious food</h1>
+          <p class="body-2 hero__text">Come with family &amp; feel the joy of mouthwatering food</p>
+          <a href="#menu" class="btn btn--outline"><span class="btn__text" data-text="View our menu">View our menu</span></a>
+        </div>
+      </div>
+      <div class="hero__slide" data-hero-slide>
+        <img class="hero__bg" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1920&q=80" alt="">
+        <div class="hero__content">
+          <p class="label-2 hero__subtitle">Delightful experience</p>
+          <div class="separator"></div>
+          <h1 class="display-1 hero__title">Flavors inspired<br>by the seasons</h1>
+          <p class="body-2 hero__text">Come with family &amp; feel the joy of mouthwatering food</p>
+          <a href="#menu" class="btn btn--outline"><span class="btn__text" data-text="View our menu">View our menu</span></a>
+        </div>
+      </div>
+      <div class="hero__slide" data-hero-slide>
+        <img class="hero__bg" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=80" alt="">
+        <div class="hero__content">
+          <p class="label-2 hero__subtitle">Amazing &amp; delicious</p>
+          <div class="separator"></div>
+          <h1 class="display-1 hero__title">Where every flavor<br>tells a story</h1>
+          <p class="body-2 hero__text">Come with family &amp; feel the joy of mouthwatering food</p>
+          <a href="#menu" class="btn btn--outline"><span class="btn__text" data-text="View our menu">View our menu</span></a>
+        </div>
+      </div>
+
+      <button class="slider-btn prev" data-prev-btn aria-label="Previous slide">
+        <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button class="slider-btn next" data-next-btn aria-label="Next slide">
+        <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+
+      <div class="hero__dots" data-hero-dots></div>
+      <div class="hero__progress"><span data-hero-progress></span></div>
+
+      <a href="#reservation" class="hero__book" aria-label="Book a table">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40V22h32v18M14 22V12h20v10M24 6v6M4 40h40M18 30h12"/></svg>
+        <span>Book a table</span>
+      </a>
+
+      <a href="#marquee" class="hero__scroll" aria-label="Scroll down"><span></span></a>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" id="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Wood-fired grill</span><i>✦</i><span>Hand-pulled noodles</span><i>✦</i><span>Seasonal produce</span><i>✦</i><span>Natural wines</span><i>✦</i><span>Open kitchen</span><i>✦</i>
+        <span>Wood-fired grill</span><i>✦</i><span>Hand-pulled noodles</span><i>✦</i><span>Seasonal produce</span><i>✦</i><span>Natural wines</span><i>✦</i><span>Open kitchen</span><i>✦</i>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section class="section service" aria-labelledby="service-label">
+      <div class="container">
+        <p class="label-2 section__subtitle" id="service-label" data-reveal>Flavors for royalty</p>
+        <h2 class="headline-1 section__title" data-reveal>We offer top notch</h2>
+        <p class="section__text" data-reveal>From dawn coffee to midnight dessert, every plate is built from scratch with ingredients we can trace back to the farm.</p>
+
+        <ul class="grid-list">
+          <li data-reveal>
+            <article class="service-card" data-tilt>
+              <a href="#menu" class="service-card__banner" data-filter-link="starters">
+                <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=700&q=80" alt="Fresh salad bowl" loading="lazy">
+              </a>
+              <h3 class="title-4">Starters</h3>
+              <a href="#menu" class="btn-text" data-filter-link="starters">View menu</a>
+            </article>
+          </li>
+          <li data-reveal>
+            <article class="service-card" data-tilt>
+              <a href="#menu" class="service-card__banner" data-filter-link="mains">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=700&q=80" alt="Wood-fired pizza" loading="lazy">
+              </a>
+              <h3 class="title-4">Mains</h3>
+              <a href="#menu" class="btn-text" data-filter-link="mains">View menu</a>
+            </article>
+          </li>
+          <li data-reveal>
+            <article class="service-card" data-tilt>
+              <a href="#menu" class="service-card__banner" data-filter-link="desserts">
+                <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=700&q=80" alt="Glazed donuts" loading="lazy">
+              </a>
+              <h3 class="title-4">Desserts</h3>
+              <a href="#menu" class="btn-text" data-filter-link="desserts">View menu</a>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section about" id="about" aria-labelledby="about-label">
+      <div class="container about__inner">
+        <div class="about__content">
+          <p class="label-2 section__subtitle" id="about-label" data-reveal>Our story</p>
+          <h2 class="headline-1 section__title" data-reveal>Every flavor tells a story</h2>
+          <p class="section__text" data-reveal>
+            Ember &amp; Oak began as a six-seat counter and a single charcoal grill. Twenty years later we still cook over live fire,
+            still make our noodles by hand every morning, and still believe dinner is best shared.
+          </p>
+
+          <ul class="stats" data-reveal>
+            <li><strong data-count="20">0</strong><span>Years of fire</span></li>
+            <li><strong data-count="85" data-suffix="+">0</strong><span>Dishes crafted</span></li>
+            <li><strong data-count="12" data-suffix="k">0</strong><span>Happy guests / yr</span></li>
+          </ul>
+
+          <div class="contact-label" data-reveal>Book through call</div>
+          <a href="tel:+441234567890" class="body-1 contact-number hover-underline" data-reveal>+44 1234 567 890</a>
+          <a href="#reservation" class="btn btn--gold" data-reveal><span class="btn__text" data-text="Read more">Read more</span></a>
+        </div>
+
+        <figure class="about__banner" data-reveal>
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80" alt="Warmly lit restaurant interior" loading="lazy" data-parallax="0.12">
+          <div class="about__floating" data-parallax="-0.08">
+            <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?auto=format&fit=crop&w=500&q=80" alt="Plated dish" loading="lazy">
+          </div>
+          <div class="about__badge">
+            <svg viewBox="0 0 120 120" class="about__badge-ring" aria-hidden="true">
+              <defs><path id="circle" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs>
+              <text><textPath href="#circle">SINCE 2006 ✦ LIVE FIRE KITCHEN ✦ </textPath></text>
+            </svg>
+            <svg viewBox="0 0 40 40" class="about__badge-icon" aria-hidden="true"><path d="M20 4c3 6 10 9 10 18a10 10 0 0 1-20 0c0-5 3-7 4-11 1 3 3 4 4 4-1-5 0-8 2-11Z"/></svg>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- SPECIAL DISH -->
+    <section class="special" aria-labelledby="special-title">
+      <figure class="special__banner">
+        <img src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?auto=format&fit=crop&w=1200&q=80" alt="Chef's special plate" loading="lazy" data-parallax="0.1">
+      </figure>
+      <div class="special__content" data-reveal>
+        <p class="label-2 section__subtitle">Special dish</p>
+        <h2 class="headline-1 section__title" id="special-title">Charred Lobster Tagliatelle</h2>
+        <p class="section__text">Hand-cut ribbons, brown butter, smoked chilli and half a lobster finished over oak embers at your table.</p>
+        <div class="special__price">
+          <del>£48.00</del>
+          <span>£39.00</span>
+        </div>
+        <button class="btn btn--gold" data-add-to-cart data-name="Charred Lobster Tagliatelle" data-price="39">
+          <span class="btn__text" data-text="Add to order">Add to order</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="section menu" id="menu" aria-labelledby="menu-label">
+      <div class="container">
+        <p class="label-2 section__subtitle" id="menu-label" data-reveal>Special selection</p>
+        <h2 class="headline-1 section__title" data-reveal>Delicious menu</h2>
+
+        <div class="menu__tabs" role="tablist" data-reveal>
+          <button class="menu__tab active" role="tab" aria-selected="true" data-filter="all">All</button>
+          <button class="menu__tab" role="tab" aria-selected="false" data-filter="starters">Starters</button>
+          <button class="menu__tab" role="tab" aria-selected="false" data-filter="mains">Mains</button>
+          <button class="menu__tab" role="tab" aria-selected="false" data-filter="desserts">Desserts</button>
+          <button class="menu__tab" role="tab" aria-selected="false" data-filter="drinks">Drinks</button>
+          <span class="menu__tab-indicator" data-tab-indicator></span>
+        </div>
+
+        <div class="menu__search" data-reveal>
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="search" placeholder="Search the menu…" data-menu-search aria-label="Search the menu">
+        </div>
+
+        <ul class="menu__list" data-menu-list></ul>
+        <p class="menu__empty" data-menu-empty hidden>No dishes match that search. Try “noodle” or “chocolate”.</p>
+
+        <p class="menu__note" data-reveal>
+          Served daily <span class="gold">7:00 pm – 9:00 pm</span> · <span class="tag">V</span> vegetarian · <span class="tag tag--hot">🌶</span> spicy
+        </p>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testi" aria-label="Guest reviews">
+      <img class="testi__bg" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1920&q=70" alt="" loading="lazy" data-parallax="0.15">
+      <div class="container testi__inner">
+        <div class="testi__quote-mark" aria-hidden="true">”</div>
+        <div class="testi__track" data-testi-track>
+          <blockquote class="testi__item active">
+            <p class="headline-2">I wanted to thank you for inviting me down for that amazing dinner the other night. The food was extraordinary.</p>
+            <footer><div class="stars">★★★★★</div><cite>Sam Jhonson</cite></footer>
+          </blockquote>
+          <blockquote class="testi__item">
+            <p class="headline-2">The hand-pulled noodles are the best I've had outside of Lanzhou. We've been back four times this month.</p>
+            <footer><div class="stars">★★★★★</div><cite>Priya Natarajan</cite></footer>
+          </blockquote>
+          <blockquote class="testi__item">
+            <p class="headline-2">Warm room, open fire, staff who actually know the wine list. Exactly what a neighbourhood restaurant should be.</p>
+            <footer><div class="stars">★★★★★</div><cite>Tomasz Kowal</cite></footer>
+          </blockquote>
+        </div>
+        <div class="testi__dots" data-testi-dots></div>
+      </div>
+    </section>
+
+    <!-- CHEFS -->
+    <section class="section chefs" id="chefs" aria-labelledby="chefs-label">
+      <div class="container">
+        <p class="label-2 section__subtitle" id="chefs-label" data-reveal>Meet the team</p>
+        <h2 class="headline-1 section__title" data-reveal>Our master chefs</h2>
+
+        <ul class="grid-list">
+          <li data-reveal>
+            <article class="chef-card">
+              <figure class="chef-card__img"><img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=600&q=80" alt="Head chef portrait" loading="lazy"></figure>
+              <div class="chef-card__body">
+                <h3 class="title-2">Marco Bellini</h3>
+                <p>Head Chef · Fire &amp; Grill</p>
+                <ul class="socials">
+                  <li><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a></li>
+                  <li><a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4 4 20"/></svg></a></li>
+                </ul>
+              </div>
+            </article>
+          </li>
+          <li data-reveal>
+            <article class="chef-card">
+              <figure class="chef-card__img"><img src="https://images.unsplash.com/photo-1583394293214-28ded15ee548?auto=format&fit=crop&w=600&q=80" alt="Pastry chef portrait" loading="lazy"></figure>
+              <div class="chef-card__body">
+                <h3 class="title-2">Lena Hart</h3>
+                <p>Pastry Chef · Desserts</p>
+                <ul class="socials">
+                  <li><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a></li>
+                  <li><a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4 4 20"/></svg></a></li>
+                </ul>
+              </div>
+            </article>
+          </li>
+          <li data-reveal>
+            <article class="chef-card">
+              <figure class="chef-card__img"><img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=600&q=80" alt="Sous chef portrait" loading="lazy"></figure>
+              <div class="chef-card__body">
+                <h3 class="title-2">Kenji Mori</h3>
+                <p>Sous Chef · Noodle Bar</p>
+                <ul class="socials">
+                  <li><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a></li>
+                  <li><a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4 4 20"/></svg></a></li>
+                </ul>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section gallery" id="gallery" aria-labelledby="gallery-label">
+      <div class="container">
+        <p class="label-2 section__subtitle" id="gallery-label" data-reveal>Moments</p>
+        <h2 class="headline-1 section__title" data-reveal>From our kitchen</h2>
+        <div class="gallery__grid">
+          <button class="gallery__item tall" data-reveal data-lightbox><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80" alt="Table of shared dishes" loading="lazy"></button>
+          <button class="gallery__item" data-reveal data-lightbox><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=80" alt="Colourful grain bowl" loading="lazy"></button>
+          <button class="gallery__item" data-reveal data-lightbox><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=900&q=80" alt="Dining room at night" loading="lazy"></button>
+          <button class="gallery__item wide" data-reveal data-lightbox><img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=1200&q=80" alt="Bar and dining room" loading="lazy"></button>
+          <button class="gallery__item" data-reveal data-lightbox><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80" alt="Vegetable bowl" loading="lazy"></button>
+          <button class="gallery__item" data-reveal data-lightbox><img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=900&q=80" alt="Ice cream dessert" loading="lazy"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESERVATION -->
+    <section class="section reservation" id="reservation" aria-labelledby="reservation-title">
+      <div class="container">
+        <div class="reservation__card" data-reveal>
+          <form class="reservation__form" data-reservation-form novalidate>
+            <h2 class="headline-1" id="reservation-title">Online reservation</h2>
+            <p class="form__text">Booking request <a href="tel:+441234567890" class="link gold">+44 1234 567 890</a> or fill out the form</p>
+
+            <div class="form__row">
+              <div class="field">
+                <input type="text" name="name" id="f-name" placeholder=" " required autocomplete="name">
+                <label for="f-name">Your name</label>
+                <small class="field__error">Please enter your name</small>
+              </div>
+              <div class="field">
+                <input type="tel" name="phone" id="f-phone" placeholder=" " required autocomplete="tel" pattern="[0-9+()\s-]{7,}">
+                <label for="f-phone">Phone number</label>
+                <small class="field__error">Please enter a valid phone</small>
+              </div>
+            </div>
+
+            <div class="form__row form__row--3">
+              <div class="field field--select">
+                <select name="guests" id="f-guests" required>
+                  <option value="1">1 person</option>
+                  <option value="2" selected>2 people</option>
+                  <option value="3">3 people</option>
+                  <option value="4">4 people</option>
+                  <option value="5">5 people</option>
+                  <option value="6">6 people</option>
+                  <option value="8">8+ people</option>
+                </select>
+                <label for="f-guests" class="static">Guests</label>
+              </div>
+              <div class="field">
+                <input type="date" name="date" id="f-date" required data-date-input>
+                <label for="f-date" class="static">Date</label>
+                <small class="field__error">Pick today or later</small>
+              </div>
+              <div class="field field--select">
+                <select name="time" id="f-time" required data-time-select></select>
+                <label for="f-time" class="static">Time</label>
+              </div>
+            </div>
+
+            <div class="field">
+              <textarea name="message" id="f-msg" placeholder=" " rows="3"></textarea>
+              <label for="f-msg">Message (allergies, occasion…)</label>
+            </div>
+
+            <button type="submit" class="btn btn--gold btn--block">
+              <span class="btn__text" data-text="Book a table">Book a table</span>
+            </button>
+          </form>
+
+          <aside class="reservation__info">
+            <h3 class="headline-2">Contact us</h3>
+            <p class="label-1">Booking request</p>
+            <a href="tel:+441234567890" class="body-1 contact-number hover-underline">+44 1234 567 890</a>
+            <div class="separator"></div>
+            <p class="label-1">Location</p>
+            <address class="body-4">12 Harbour Lane, Old Town,<br>Seaport, SP1 4EO</address>
+            <p class="label-1">Lunch time</p>
+            <p class="body-4">Monday to Sunday<br>11:30 am – 2:30 pm</p>
+            <p class="label-1">Dinner time</p>
+            <p class="body-4">Monday to Sunday<br>5:00 pm – 11:00 pm</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand" data-reveal>
+        <a href="#home" class="logo">
+          <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4c3 6 10 9 10 18a10 10 0 0 1-20 0c0-5 3-7 4-11 1 3 3 4 4 4-1-5 0-8 2-11Z"/></svg>
+          <span class="logo__text">EMBER<small>&amp; OAK</small></span>
+        </a>
+        <address class="body-4">12 Harbour Lane, Old Town, Seaport</address>
+        <a href="mailto:hello@emberandoak.test" class="body-4 link">hello@emberandoak.test</a>
+        <a href="tel:+441234567890" class="body-4 link">+44 1234 567 890</a>
+        <p class="body-4">Open daily: 11:30 am – 11:00 pm</p>
+        <div class="separator"></div>
+        <p class="title-1">Get news &amp; offers</p>
+        <p class="label-1">Subscribe &amp; get <span class="gold">25% off.</span></p>
+        <form class="newsletter" data-newsletter novalidate>
+          <input type="email" placeholder="Your email" aria-label="Your email" required>
+          <button type="submit" class="btn btn--gold"><span class="btn__text" data-text="Subscribe">Subscribe</span></button>
+        </form>
+      </div>
+
+      <ul class="footer__list">
+        <li><a href="#home" class="label-2 hover-underline">Home</a></li>
+        <li><a href="#menu" class="label-2 hover-underline">Menus</a></li>
+        <li><a href="#about" class="label-2 hover-underline">About us</a></li>
+        <li><a href="#chefs" class="label-2 hover-underline">Our chefs</a></li>
+        <li><a href="#reservation" class="label-2 hover-underline">Contact</a></li>
+      </ul>
+      <ul class="footer__list">
+        <li><a href="#" class="label-2 hover-underline">Instagram</a></li>
+        <li><a href="#" class="label-2 hover-underline">Facebook</a></li>
+        <li><a href="#" class="label-2 hover-underline">TikTok</a></li>
+        <li><a href="#" class="label-2 hover-underline">Google Maps</a></li>
+        <li><a href="#" class="label-2 hover-underline">Tripadvisor</a></li>
+      </ul>
+    </div>
+    <p class="footer__copy">© <span data-year></span> Ember &amp; Oak. All rights reserved.</p>
+  </footer>
+
+  <!-- CART DRAWER -->
+  <aside class="cart" data-cart aria-label="Your order" aria-hidden="true">
+    <div class="cart__head">
+      <h2 class="title-2">Your order</h2>
+      <button class="cart__close" data-cart-close aria-label="Close order">
+        <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <ul class="cart__list" data-cart-list></ul>
+    <p class="cart__empty" data-cart-empty>Your order is empty. Add something tasty from the menu.</p>
+    <div class="cart__foot">
+      <div class="cart__total"><span>Total</span><strong data-cart-total>£0.00</strong></div>
+      <button class="btn btn--gold btn--block" data-checkout><span class="btn__text" data-text="Order for pickup">Order for pickup</span></button>
+    </div>
+  </aside>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" data-lightbox-box aria-hidden="true" role="dialog" aria-label="Image viewer">
+    <button class="lightbox__close" data-lightbox-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <button class="lightbox__nav prev" data-lightbox-prev aria-label="Previous image"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+    <img src="" alt="" data-lightbox-img>
+    <button class="lightbox__nav next" data-lightbox-next aria-label="Next image"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal" data-modal aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+    <div class="modal__box">
+      <div class="modal__check"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="m15 27 7 7 15-15"/></svg></div>
+      <h2 class="headline-2" id="modal-title" data-modal-title>Table booked!</h2>
+      <p class="body-4" data-modal-text></p>
+      <button class="btn btn--gold" data-modal-close><span class="btn__text" data-text="Wonderful">Wonderful</span></button>
+    </div>
+  </div>
+  <canvas class="confetti" data-confetti aria-hidden="true"></canvas>
+
+  <!-- TOAST + BACK TO TOP -->
+  <div class="toast" data-toast role="status" aria-live="polite"></div>
+  <a href="#home" class="back-top" data-back-top aria-label="Back to top">
+    <svg viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></svg>
+  </a>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
